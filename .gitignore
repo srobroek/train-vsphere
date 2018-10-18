@@ -8,3 +8,4 @@
 /tmp/
 Gemfile.local
 Gemfile.local.lock
+.kitchen/
