@@ -19,4 +19,4 @@ RuboCop::RakeTask.new(:lint) do |t|
   t.options = ['--display-cop-names', '--config', train_rubocop_yml]
 end
 
-task default: :test
+task default: %i(test lint)
