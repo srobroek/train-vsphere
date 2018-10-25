@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rake/testtask'
 require 'rubocop/rake_task'
 
@@ -14,9 +16,7 @@ end
 
 RuboCop::RakeTask.new(:lint) do |t|
   require 'train/globals'
-  train_rubocop_yml = File.join(Train.src_root, '.rubocop.yml')
-
-  t.options = ['--display-cop-names', '--config', train_rubocop_yml]
+  t.options = ['--display-cop-names']
 end
 
-task default: %i(test lint)
+task default: %i[test lint]

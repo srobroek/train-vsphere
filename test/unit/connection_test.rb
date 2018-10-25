@@ -17,11 +17,11 @@ describe TrainPlugins::Habitat::Connection do
       (subject < Train::Plugins::Transport::BaseConnection).must_equal(true)
     end
 
-    %i(
+    %i[
       file_via_connection
       run_command_via_connection
       local?
-    ).each do |method_name|
+    ].each do |method_name|
       it "should NOT provide a #{method_name}() method" do
         # false passed to instance_methods says 'don't use inheritance'
         subject.instance_methods(false).wont_include(method_name)
@@ -73,3 +73,4 @@ describe TrainPlugins::Habitat::Connection do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

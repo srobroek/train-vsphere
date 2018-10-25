@@ -10,7 +10,7 @@ describe TrainPlugins::Habitat::Transport do
   let(:transport) { subject.new(option) }
 
   describe 'plugin definition' do
-    it 'should be registered with the plugin registry without the train- prefix' do
+    it 'should be registered with plugin registry without train- prefix' do
       Train::Plugins.registry.keys.wont_include('train-habitat')
       Train::Plugins.registry.keys.must_include('habitat')
     end

@@ -13,7 +13,7 @@ module TrainPlugins
       end
 
       def services
-        JSON.parse(Net::HTTP.get_response(uri))
+        JSON.parse(Net::HTTP.get_response(uri).body)
       end
     end
   end

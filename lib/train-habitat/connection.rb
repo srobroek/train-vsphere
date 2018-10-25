@@ -12,7 +12,7 @@ module TrainPlugins
 
       def initialize(options = {})
         if options.nil? || options[:host].nil?
-          raise Train::TransportError, 'Habitat host serving HTTP Gateway is required'
+          raise Train::TransportError, 'Habitat HTTP Gateway host required'
         end
 
         super(options)
@@ -26,7 +26,6 @@ module TrainPlugins
         "habitat://#{@options[:host]}"
       end
 
-      # Example usage in an InSpec Resource Pack: inspec.backend.habitat_client.services
       def habitat_client
         return HTTPGateway.new(@options[:host]) unless cache_enabled?(:api_call)
 

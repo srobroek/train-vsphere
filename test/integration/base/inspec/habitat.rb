@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 control 'Habitat Service' do
   describe command('/bin/hab') do
     it { should exist }
