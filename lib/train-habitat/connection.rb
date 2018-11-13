@@ -27,9 +27,9 @@ module TrainPlugins
       end
 
       def habitat_client
-        return HTTPGateway.new(@options[:host]) unless cache_enabled?(:api_call)
-
-        @cache[:api_call][:HTTPGateway] ||= HTTPGateway.new(@options[:host])
+        cached_client(:api_call, :HTTPGateway) do
+          HTTPGateway.new(@options[:host])
+        end
       end
     end
   end

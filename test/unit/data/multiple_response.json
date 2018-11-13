@@ -1,0 +1,342 @@
+[
+  {
+    "all_pkg_binds": [],
+    "binding_mode": "strict",
+    "binds": [],
+    "bldr_url": "https://bldr.habitat.sh",
+    "cfg": {
+      "worker_processes": 4,
+      "events": {
+        "worker_connections": 1024
+      },
+      "http": {
+        "keepalive_timeout": 60,
+        "sendfile": "on",
+        "tcp_nodelay": "on",
+        "tcp_nopush": "on",
+        "listen": {
+          "port": 80
+        }
+      }
+    },
+    "channel": "stable",
+    "composite": null,
+    "config_from": null,
+    "desired_state": "Up",
+    "health_check": "Unknown",
+    "hooks": {
+      "health_check": null,
+      "init": null,
+      "file_updated": null,
+      "reload": null,
+      "reconfigure": null,
+      "suitability": null,
+      "run": null,
+      "post_run": null,
+      "smoke_test": null,
+      "post_stop": null
+    },
+    "initialized": true,
+    "last_election_status": "None",
+    "manager_fs_cfg": {
+      "sup_root": "/hab/sup/default",
+      "data_path": "/hab/sup/default/data",
+      "specs_path": "/hab/sup/default/specs",
+      "composites_path": "/hab/sup/default/composites",
+      "member_id_file": "/hab/sup/default/MEMBER_ID",
+      "proc_lock_file": "/hab/sup/default/LOCK"
+    },
+    "needs_reconfiguration": false,
+    "needs_reload": false,
+    "pkg": {
+      "ident": "core/nginx/1.15.5/20181010011756",
+      "origin": "core",
+      "name": "nginx",
+      "version": "1.15.5",
+      "release": "20181010011756",
+      "deps": [
+        {
+          "origin": "core",
+          "name": "bzip2",
+          "version": "1.0.6",
+          "release": "20180608091727"
+        },
+        {
+          "origin": "core",
+          "name": "cacerts",
+          "version": "2018.03.07",
+          "release": "20180608102212"
+        },
+        {
+          "origin": "core",
+          "name": "gcc-libs",
+          "version": "7.3.0",
+          "release": "20180608091701"
+        },
+        {
+          "origin": "core",
+          "name": "glibc",
+          "version": "2.27",
+          "release": "20180608041157"
+        },
+        {
+          "origin": "core",
+          "name": "libedit",
+          "version": "3.1.20150325",
+          "release": "20180608184640"
+        },
+        {
+          "origin": "core",
+          "name": "linux-headers",
+          "version": "4.15.9",
+          "release": "20180608041107"
+        },
+        {
+          "origin": "core",
+          "name": "ncurses",
+          "version": "6.1",
+          "release": "20180608091810"
+        },
+        {
+          "origin": "core",
+          "name": "openssl",
+          "version": "1.0.2n",
+          "release": "20180608102213"
+        },
+        {
+          "origin": "core",
+          "name": "pcre",
+          "version": "8.41",
+          "release": "20180608092740"
+        },
+        {
+          "origin": "core",
+          "name": "zlib",
+          "version": "1.2.11",
+          "release": "20180608050617"
+        }
+      ],
+      "env": {
+        "PATH": "/hab/pkgs/core/nginx/1.15.5/20181010011756/sbin:/hab/pkgs/core/glibc/2.27/20180608041157/bin:/hab/pkgs/core/ncurses/6.1/20180608091810/bin:/hab/pkgs/core/bzip2/1.0.6/20180608091727/bin:/hab/pkgs/core/openssl/1.0.2n/20180608102213/bin:/hab/pkgs/core/pcre/8.41/20180608092740/bin:/hab/pkgs/core/busybox-static/1.24.2/20170513215502/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+      },
+      "exposes": [
+        "80"
+      ],
+      "exports": {
+        "port": "http.listen.port"
+      },
+      "path": "/hab/pkgs/core/nginx/1.15.5/20181010011756",
+      "svc_path": "/hab/svc/nginx",
+      "svc_config_path": "/hab/svc/nginx/config",
+      "svc_data_path": "/hab/svc/nginx/data",
+      "svc_files_path": "/hab/svc/nginx/files",
+      "svc_static_path": "/hab/svc/nginx/static",
+      "svc_var_path": "/hab/svc/nginx/var",
+      "svc_pid_file": "/hab/svc/nginx/PID",
+      "svc_run": "/hab/svc/nginx/run",
+      "svc_user": "root",
+      "svc_group": "hab"
+    },
+    "process": {
+      "pid": 3349,
+      "state": "up",
+      "state_entered": 1541698251
+    },
+    "service_group": "nginx.default",
+    "smoke_check": "Pending",
+    "spec_file": "/hab/sup/default/specs/nginx.spec",
+    "spec_ident": {
+      "origin": "core",
+      "name": "nginx",
+      "version": null,
+      "release": null
+    },
+    "svc_encrypted_password": null,
+    "sys": {
+      "version": "0.67.0/20181029220924",
+      "member_id": "ad38f223ef0c4458b20c56cdbdd2e8b5",
+      "ip": "10.0.2.15",
+      "hostname": "inspec-habitat-centos-75.vagrantup.com",
+      "gossip_ip": "0.0.0.0",
+      "gossip_port": 9638,
+      "ctl_gateway_ip": "127.0.0.1",
+      "ctl_gateway_port": 9632,
+      "http_gateway_ip": "0.0.0.0",
+      "http_gateway_port": 9631,
+      "permanent": false
+    },
+    "topology": "standalone",
+    "update_strategy": "none",
+    "user_config_updated": false
+  },
+  {
+    "all_pkg_binds": [],
+    "binding_mode": "strict",
+    "binds": [],
+    "bldr_url": "https://bldr.habitat.sh",
+    "cfg": {
+      "worker_processes": 4,
+      "events": {
+        "worker_connections": 1024
+      },
+      "http": {
+        "keepalive_timeout": 60,
+        "sendfile": "on",
+        "tcp_nodelay": "on",
+        "tcp_nopush": "on",
+        "listen": {
+          "port": 80
+        }
+      }
+    },
+    "channel": "stable",
+    "composite": null,
+    "config_from": null,
+    "desired_state": "Up",
+    "health_check": "Unknown",
+    "hooks": {
+      "health_check": null,
+      "init": null,
+      "file_updated": null,
+      "reload": null,
+      "reconfigure": null,
+      "suitability": null,
+      "run": null,
+      "post_run": null,
+      "smoke_test": null,
+      "post_stop": null
+    },
+    "initialized": true,
+    "last_election_status": "None",
+    "manager_fs_cfg": {
+      "sup_root": "/hab/sup/default",
+      "data_path": "/hab/sup/default/data",
+      "specs_path": "/hab/sup/default/specs",
+      "composites_path": "/hab/sup/default/composites",
+      "member_id_file": "/hab/sup/default/MEMBER_ID",
+      "proc_lock_file": "/hab/sup/default/LOCK"
+    },
+    "needs_reconfiguration": false,
+    "needs_reload": false,
+    "pkg": {
+      "ident": "core/nginx/1.15.5/20181010011756",
+      "origin": "core",
+      "name": "nginx",
+      "version": "1.15.5",
+      "release": "20181010011756",
+      "deps": [
+        {
+          "origin": "core",
+          "name": "bzip2",
+          "version": "1.0.6",
+          "release": "20180608091727"
+        },
+        {
+          "origin": "core",
+          "name": "cacerts",
+          "version": "2018.03.07",
+          "release": "20180608102212"
+        },
+        {
+          "origin": "core",
+          "name": "gcc-libs",
+          "version": "7.3.0",
+          "release": "20180608091701"
+        },
+        {
+          "origin": "core",
+          "name": "glibc",
+          "version": "2.27",
+          "release": "20180608041157"
+        },
+        {
+          "origin": "core",
+          "name": "libedit",
+          "version": "3.1.20150325",
+          "release": "20180608184640"
+        },
+        {
+          "origin": "core",
+          "name": "linux-headers",
+          "version": "4.15.9",
+          "release": "20180608041107"
+        },
+        {
+          "origin": "core",
+          "name": "ncurses",
+          "version": "6.1",
+          "release": "20180608091810"
+        },
+        {
+          "origin": "core",
+          "name": "openssl",
+          "version": "1.0.2n",
+          "release": "20180608102213"
+        },
+        {
+          "origin": "core",
+          "name": "pcre",
+          "version": "8.41",
+          "release": "20180608092740"
+        },
+        {
+          "origin": "core",
+          "name": "zlib",
+          "version": "1.2.11",
+          "release": "20180608050617"
+        }
+      ],
+      "env": {
+        "PATH": "/hab/pkgs/core/nginx/1.15.5/20181010011756/sbin:/hab/pkgs/core/glibc/2.27/20180608041157/bin:/hab/pkgs/core/ncurses/6.1/20180608091810/bin:/hab/pkgs/core/bzip2/1.0.6/20180608091727/bin:/hab/pkgs/core/openssl/1.0.2n/20180608102213/bin:/hab/pkgs/core/pcre/8.41/20180608092740/bin:/hab/pkgs/core/busybox-static/1.24.2/20170513215502/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+      },
+      "exposes": [
+        "80"
+      ],
+      "exports": {
+        "port": "http.listen.port"
+      },
+      "path": "/hab/pkgs/core/nginx/1.15.5/20181010011756",
+      "svc_path": "/hab/svc/nginx",
+      "svc_config_path": "/hab/svc/nginx/config",
+      "svc_data_path": "/hab/svc/nginx/data",
+      "svc_files_path": "/hab/svc/nginx/files",
+      "svc_static_path": "/hab/svc/nginx/static",
+      "svc_var_path": "/hab/svc/nginx/var",
+      "svc_pid_file": "/hab/svc/nginx/PID",
+      "svc_run": "/hab/svc/nginx/run",
+      "svc_user": "root",
+      "svc_group": "hab"
+    },
+    "process": {
+      "pid": 3349,
+      "state": "up",
+      "state_entered": 1541698251
+    },
+    "service_group": "nginx.default",
+    "smoke_check": "Pending",
+    "spec_file": "/hab/sup/default/specs/nginx.spec",
+    "spec_ident": {
+      "origin": "core",
+      "name": "nginx",
+      "version": null,
+      "release": null
+    },
+    "svc_encrypted_password": null,
+    "sys": {
+      "version": "0.67.0/20181029220924",
+      "member_id": "ad38f223ef0c4458b20c56cdbdd2e8b5",
+      "ip": "10.0.2.15",
+      "hostname": "inspec-habitat-centos-75.vagrantup.com",
+      "gossip_ip": "0.0.0.0",
+      "gossip_port": 9638,
+      "ctl_gateway_ip": "127.0.0.1",
+      "ctl_gateway_port": 9632,
+      "http_gateway_ip": "0.0.0.0",
+      "http_gateway_port": 9631,
+      "permanent": false
+    },
+    "topology": "standalone",
+    "update_strategy": "none",
+    "user_config_updated": false
+  }
+]

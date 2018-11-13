@@ -6,3 +6,8 @@ Style/Documentation:
   Enabled: false
 Naming/FileName:
   Enabled: false
+Lint/UnneededCopDisableDirective:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'test/unit/**/*'
