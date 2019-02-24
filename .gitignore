@@ -10,3 +10,6 @@ Gemfile.lock
 Gemfile.local
 Gemfile.local.lock
 .kitchen/
+*.tfstate
+*.tfstate.backup
+.terraform
