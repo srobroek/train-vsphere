@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 require './test/helper'
 require './lib/train-habitat/httpgateway'
 
-describe TrainPlugins::Habitat::HTTPGateway do
+describe TrainPlugins::Habitat::HTTPGateway do # rubocop: disable Metrics/BlockLength
   subject { TrainPlugins::Habitat::HTTPGateway.new(host) }
 
   let(:host) { 'habitat01.inspec.io' }

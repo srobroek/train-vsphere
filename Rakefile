@@ -19,4 +19,4 @@ RuboCop::RakeTask.new(:lint) do |t|
   t.options = ['--display-cop-names']
 end
 
-task default: %i[test lint]
+task default: %i(test lint)

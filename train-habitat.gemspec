@@ -14,9 +14,9 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://github.com/inspec/train-habitat'
   spec.license     = 'Apache-2.0'
 
-  spec.files = %w[
+  spec.files = %w{
     README.md train-aws.gemspec Gemfile
-  ] + Dir.glob(
+  } + Dir.glob(
     'lib/**/*', File::FNM_DOTMATCH
   ).reject { |f| File.directory?(f) }
   spec.require_paths = ['lib']
