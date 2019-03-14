@@ -20,7 +20,6 @@ describe TrainPlugins::Habitat::Connection do
     %i(
       file_via_connection
       run_command_via_connection
-      local?
     ).each do |method_name|
       it "should NOT provide a #{method_name}() method" do
         # false passed to instance_methods says 'don't use inheritance'
