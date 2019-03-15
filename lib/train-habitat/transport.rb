@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+require 'train'
 require 'train/plugins'
 require 'train-habitat/connection'
 
@@ -8,9 +7,23 @@ module TrainPlugins
     class Transport < Train.plugin(1)
       name 'habitat'
 
-      option :host, required: true
+      # The train-habitat plugins is a chimeric plugin, meaning it uses
+      # multiple ways of connecting to its target. A user must specifiy
+      # at least one set, but they can use multiple sets of connecting
+      # information to get a full experience.
 
-      # inspec -t habitat://hostname
+      # For service listings and health, specify supervisor api options.
+      # https://www.habitat.sh/docs/using-habitat/#monitor-services-through-the-http-api
+      option :api_url, required: false, desc: 'The url at which a Habitat Supervisor exposes its API'
+
+      def self.cli_transport_prefixes
+        {
+          # add transports here, prefix => transport name
+          # cli_ssh: :ssh,
+        }
+      end
+
+      # inspec -t habitat://credset
       def connection(_instance_opts = nil)
         @connection ||= TrainPlugins::Habitat::Connection.new(@options)
       end

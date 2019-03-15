@@ -13,3 +13,4 @@ Gemfile.local.lock
 *.tfstate
 *.tfstate.backup
 .terraform
+test/integration/shared/.vagrant

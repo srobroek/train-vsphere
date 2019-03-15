@@ -17,10 +17,12 @@ describe TrainPlugins::Habitat::Platform do
     end
 
     it 'in_family should be api' do
+      TrainPlugins::Habitat::Connection.any_instance.stubs(:validate_transport_options!)
       plat.family.must_equal 'api'
     end
 
     it 'should force platform to habitat' do
+      TrainPlugins::Habitat::Connection.any_instance.stubs(:validate_transport_options!)
       plat.name.must_equal 'habitat'
     end
   end

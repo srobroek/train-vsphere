@@ -40,8 +40,8 @@ systemctl enable habitat
 fi
 
 # Install a package
-pkg_origin=$1
-pkg_name=$2
+pkg_origin=core
+pkg_name=httpd
 
 echo "Installing $pkg_origin/$pkg_name"
 hab pkg install "$pkg_origin/$pkg_name"

@@ -27,6 +27,7 @@ describe TrainPlugins::Habitat::Transport do
   end
 
   it '#connection' do
+    TrainPlugins::Habitat::Connection.any_instance.stubs(:validate_transport_options!)
     transport.connection.must_be_instance_of TrainPlugins::Habitat::Connection
   end
 end

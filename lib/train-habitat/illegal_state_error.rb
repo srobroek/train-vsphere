@@ -17,3 +17,15 @@ class MultipleServicesFoundError < IllegalStateError
     super("Expected one service '#{origin}/#{name}', but found multiple.")
   end
 end
+
+class CliNotAvailableError < IllegalStateError
+  def initialize(_cli_tranport_names)
+    super("No CLI-capable connection options passed - use one of #{cli_transport_names.join(', ')} option sets")
+  end
+end
+
+class MultipleCliTransportsError < IllegalStateError
+  def initialize(_cli_tranport_names)
+    super("Too many CLI-capable transports specified - only one may be used at a time.  Saw: #{cli_transport_names.join(', ')}.")
+  end
+end
