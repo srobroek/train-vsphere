@@ -50,8 +50,14 @@ module TrainPlugins
 
       def habitat_api_client
         cached_client(:api_call, :HTTPGateway) do
-          # TODO: add authtoken
-          HTTPGateway.new(@options[:api_host])
+          # Send all options beginning with api_ to the HTTPGateway, stripping the prefix
+          api_options = {}
+          transport_options.each do |option_name, option_value|
+            next unless option_name.to_s.start_with? 'api_'
+
+            api_options[option_name.to_s.sub(/^api_/, '').to_sym] = option_value
+          end
+          HTTPGateway.new(api_options)
         end
       end
 

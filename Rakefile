@@ -10,7 +10,7 @@ end
 
 namespace(:test) do
   desc 'Run all integration tests'
-  task integration: %i(integration:cli_ssh)
+  task integration: %i(integration:sup_start integration:api_actual integration:cli_ssh_actual integration:sup_shutdown)
 
   Rake::TestTask.new(:unit) do |t|
     t.libs.concat %w{test lib}
@@ -36,6 +36,18 @@ namespace(:test) do
           sh cmd
         end
       end
+    end
+
+    desc 'Use HTTP API to talk to supervisor'
+    task api: [:sup_start, :api_actual, :sup_shutdown]
+    Rake::TestTask.new(:api_actual) do |t|
+      t.description = nil # Hide this task
+      t.libs.push 'lib'
+      t.test_files = FileList[
+        'test/integration/http-api/*_test.rb',
+      ]
+      t.verbose = true
+      t.warning = false
     end
 
     desc 'Use ssh cli transport to talk to supervisor'

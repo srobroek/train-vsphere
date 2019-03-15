@@ -44,18 +44,19 @@ describe TrainPlugins::Habitat::Connection do
   #                                 API Options
   # =========================================================================== #
   describe '#api_options_provided?' do
-    describe 'when api options are present' do
-      let(:opt) { { api_url: 'http://somewhere.com' } }
-      it 'should find the options' do
-        conn.api_options_provided?.must_equal true
-      end
-    end
     describe 'when api options are absent' do
       let(:opt) { { cli_test_host: 'somewhere.com' } }
       it 'should not find the options' do
         TrainPlugins::Habitat::Transport.expects(:cli_transport_prefixes).returns({ cli_test: :test }).at_least_once
         TrainPlugins::Habitat::Connection.any_instance.stubs(:initialize_cli_connection!)
         conn.api_options_provided?.must_equal false
+      end
+    end
+
+    describe 'when api options are present' do
+      let(:opt) { { api_url: 'http://somewhere.com:9631' } }
+      it 'should find the options' do
+        conn.api_options_provided?.must_equal true
       end
     end
   end
@@ -123,8 +124,15 @@ describe TrainPlugins::Habitat::Connection do
   # =========================================================================== #
 
   describe '#habitat_api_client' do
+    let(:opt) { { api_url: 'http://somewhere.com:9631' } }
+
     it 'should return kind of TrainPlugins::Habitat::HTTPGateway' do
       conn.habitat_api_client.must_be_kind_of TrainPlugins::Habitat::HTTPGateway
+    end
+
+    it 'should create a HTTPGateway with the right base URL' do
+      conn.habitat_api_client.wont_be_nil
+      conn.habitat_api_client.base_uri.to_s.must_equal opt[:api_url]
     end
 
     it 'returns a new instance when cache is disabled' do
