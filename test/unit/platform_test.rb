@@ -2,6 +2,7 @@
 
 require './test/helper'
 require './lib/train-habitat/platform'
+require './lib/train-habitat/connection'
 
 describe TrainPlugins::Habitat::Platform do
   subject { TrainPlugins::Habitat::Platform }

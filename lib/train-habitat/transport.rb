@@ -19,7 +19,7 @@ module TrainPlugins
       def self.cli_transport_prefixes
         {
           # add transports here, prefix => transport name
-          # cli_ssh: :ssh,
+          cli_ssh: :ssh,
         }
       end
 
