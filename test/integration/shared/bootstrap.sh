@@ -27,6 +27,7 @@ if [ ! -f /etc/systemd/system/habitat.service ]; then
   After=network.target
 
   [Service]
+  Environment="HAB_SUP_GATEWAY_AUTH_TOKEN=bulk-overripe-bananas-by-autogyro"
   ExecStart=/bin/hab sup run
   Restart=always
   RestartSec=5

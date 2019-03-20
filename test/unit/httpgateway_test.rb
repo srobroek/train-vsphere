@@ -1,7 +1,7 @@
 require './test/helper'
 require './lib/train-habitat/httpgateway'
 
-describe TrainPlugins::Habitat::HTTPGateway do
+describe TrainPlugins::Habitat::HTTPGateway do # rubocop:disable Metrics/BlockLength
   let(:hgw) { TrainPlugins::Habitat::HTTPGateway.new(opts) }
   describe 'when a full URL is provided' do
     let(:opts) { { url: 'http://habitat01.inspec.io:9631' } }
@@ -33,9 +33,15 @@ describe TrainPlugins::Habitat::HTTPGateway do
       service_mock
     end
 
-    it 'should be able to get paths' do
-      Net::HTTP.stubs(:get_response).returns(service_response_mock)
+    let(:net_http_mock) do
+      http_mock = mock
+      http_mock.expects(:read_timeout=)
+      Net::HTTP.stubs(:start).returns(http_mock)
+      http_mock.expects(:get).returns(service_response_mock)
+    end
 
+    it 'should be able to get paths' do
+      net_http_mock
       response = hgw.get_path('/service') # No exception thrown
       response.wont_be_nil
       response.must_be_kind_of TrainPlugins::Habitat::HTTPGateway::Response
@@ -43,12 +49,29 @@ describe TrainPlugins::Habitat::HTTPGateway do
     end
 
     it 'should automatically unpack JSON responses' do
-      Net::HTTP.stubs(:get_response).returns(service_response_mock)
+      net_http_mock
 
       response = hgw.get_path('/service') # No exception thrown
       response.body.must_be_kind_of Array # Apparently they always send us an array
       response.body[0].keys[0].must_be_kind_of Symbol # We symbolize the keys
       response.raw_response.body.must_be_kind_of String
+    end
+
+    describe 'when an auth token is set' do
+      let(:opts) do
+        {
+          url: 'http://habitat01.inspec.io:9631',
+          auth_token: 'some-secret',
+        }
+      end
+      it 'should send it as an HTTP header' do
+        net_http_mock.with { |_url, headers| headers == { 'Authorization' => 'Bearer some-secret' } }
+
+        response = hgw.get_path('/service') # No exception thrown
+        response.wont_be_nil
+        response.code.must_equal 200
+      end
+
     end
   end
 end

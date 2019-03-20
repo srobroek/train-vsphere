@@ -14,7 +14,8 @@ module TrainPlugins
 
       # For service listings and health, specify supervisor api options.
       # https://www.habitat.sh/docs/using-habitat/#monitor-services-through-the-http-api
-      option :api_url, required: false, desc: 'The url at which a Habitat Supervisor exposes its API'
+      option :api_url, required: false, desc: 'The url at which a Habitat Supervisor exposes its HTTP Gateway API'
+      option :api_auth_token, required: false, desc: 'A bearer token which may be used to authenticate to the Supervisor HTTP Gateway'
 
       def self.cli_transport_prefixes
         {
