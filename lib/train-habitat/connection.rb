@@ -127,6 +127,9 @@ module TrainPlugins
 
         raise MultipleCliTransportsError, seen_cli_tranports.keys if seen_cli_transports.count > 1
 
+        # If no specific logger was passed in, re-use ours.
+        non_specific_options[:logger] = logger
+
         @cli_transport_name = seen_cli_transports.keys.first
         final_train_options = seen_cli_transports[cli_transport_name].merge(non_specific_options)
         @cli_transport = Train.create(cli_transport_name, final_train_options)
