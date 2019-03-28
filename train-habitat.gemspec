@@ -15,14 +15,14 @@ Gem::Specification.new do |spec|
   spec.license     = 'Apache-2.0'
 
   spec.files = %w{
-    README.md train-aws.gemspec Gemfile
+    README.md train-habitat.gemspec Gemfile
   } + Dir.glob(
     'lib/**/*', File::FNM_DOTMATCH
   ).reject { |f| File.directory?(f) }
   spec.require_paths = ['lib']
 
   # All plugins should mention train, > 1.4
-  spec.add_dependency 'train', '>= 1.5.6'
+  spec.add_dependency 'train', '>= 1.7.8', '< 3.0'
 
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
