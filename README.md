@@ -4,7 +4,8 @@
 
 ## To Install this as a User
 
-You will need InSpec v2.3 or later.
+This has been built on inspec 3.9 but it will probably work on earlier versions; YMMV. 
+
 
 Simply run:
 
