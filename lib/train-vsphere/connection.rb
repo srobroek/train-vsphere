@@ -6,6 +6,10 @@ require 'vsphere-automation-cis'
 require 'train'
 require 'train/plugins'
 require 'train-vsphere/platform'
+require 'vsphere-automation-appliance'
+require 'vsphere-automation-content'
+require 'vsphere-automation-vapi'
+require '	vsphere-automation-vcenter'
 
 module TrainPlugins
   module Vsphere
@@ -14,13 +18,19 @@ module TrainPlugins
 
 
       def initialize(options)
-        @vcport = '443'
-        @vchostname = options[:hostname]
-        @username = options[:username]
-        @password = options[:password]
-        @vcuri = "#{@vchostname}:#{@vcport}"
+
+        # @vcport = '443'
+        # @vchostname = options[:hostname]
+        # @username = options[:username]
+        # @password = options[:password]
+
+        # @insecure = options[:insecure]
         
-        options[:insecure].casecmp?('false') ? (@vcsslverify = false) : (@vcsslverify = true)
+
+
+
+
+        options = validate_options(options)
         super(options)
 
       end
@@ -28,28 +38,29 @@ module TrainPlugins
 
 
       def api_client
-        @configuration = VSphereAutomation::Configuration.new.tap do |c|
-          c.host = @vcuri
-          c.username = @username
-          c.password = @password
+
+        configuration = VSphereAutomation::Configuration.new.tap do |c|
+          c.host = options[:host]
+          c.username = options[:user]
+          c.password = options[:password]
           c.scheme = 'https'
-          c.verify_ssl = @vcsslverify
-          c.verify_ssl_host = @vcsslverify
+          c.verify_ssl = options[:insecure]
+          c.verify_ssl_host = options[:insecure]
         end
         begin
-          @api_client = VSphereAutomation::ApiClient.new(@configuration)
-          @api_client.default_headers['Authorization'] = @configuration.basic_auth_token
-          @session_api = VSphereAutomation::CIS::SessionApi.new(@api_client)
-          @session_id = session_api.create('').value
-          @api_client.default_headers['vmware-api-session-id'] = session_id  
-        return @api_client
+          api_client = VSphereAutomation::ApiClient.new(configuration)
+          api_client.default_headers['Authorization'] = configuration.basic_auth_token
+          session_api = VSphereAutomation::CIS::SessionApi.new(api_client)
+          session_id = session_api.create('').value
+          api_client.default_headers['vmware-api-session-id'] = session_id  
+        return api_client
         rescue VSphereAutomation::ApiError => e
           puts "Exception when calling AccessConsolecliApi->get: #{e}"
         end
       end
 
       def uri
-        "vsphere://#{@username}@#{@hostname}"
+        "vsphere://#{options[:user]}/#{options[:ssodomain]}@#{options[:hostname]}"
       end
 
 
@@ -57,9 +68,34 @@ module TrainPlugins
         false
       end
 
-      # def uri
-      #   'vsphere://'
-      # end
+    private
+
+    def validate_options(options)
+      puts options
+      if options[:user].nil?
+        fail Train::ClientError,
+            'A user needs to be set'
+      end
+      if options[:password].nil?
+        fail Train::ClientError,
+            'A password needs to be set'
+      end
+      if options[:host].nil?
+        fail Train::ClientError,
+            'A host needs to be set'
+      end
+
+      if options[:insecure].nil?
+        options[:insecure] = false
+      elseif
+        options[:insecure].casecmp?('true')
+        options[:insecure] == true
+      else
+        options[:insecure] == false
+      end
+
+      return options
+    end
 
     end
   end
