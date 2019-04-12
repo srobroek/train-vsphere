@@ -53,13 +53,9 @@ bundle exec rake test:integration
 
 ## License
 
-| **Author:**          | Paul Welch
+| **Author:**          | Sjors Robroek
 
-| **Author:**          | David McCown
-
-| **Author:**          | Clinton Wolfe
-
-| **Copyright:**       | Copyright (c) 2018-2019 Chef Software Inc.
+| **Copyright:**       | Copyright (c) 2019
 
 | **License:**         | Apache License, Version 2.0
 
