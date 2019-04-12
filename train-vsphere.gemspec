@@ -22,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
 spec.add_dependency 'train', '~> 1.4'
+spec.add_dependency 'vsphere-automation-sdk', '~> 0.1.0'
 end

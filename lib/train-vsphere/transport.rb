@@ -11,10 +11,11 @@ module TrainPlugins
     class Transport < Train.plugin(1)
       name 'vsphere'
 
-      option :hostname, required: true
-      option :username, required: true
-      option :password, required: true
-      option :insecure, default: 'true', required: false
+      option :host, required: true, default: ENV['VC_HOSTNAME'] 
+      option :user, required: true, default: ENV['VC_USERNAME'] 
+      option :password, required: true, default: ENV['VC_PASSWORD'] 
+      option :insecure, required: false, default: false
+
 
 
       # inspec -t vsphere://
