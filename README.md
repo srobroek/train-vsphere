@@ -108,7 +108,7 @@ Due to some unknown bug, libcurl4-gnutls-dev may be required on linux. I haven't
 1. Create your feature branch (git checkout -b my-new-feature)
 1. Commit your changes (git commit -sam 'Add some feature')
 1. Push to the branch (git push origin my-new-feature)
-1. Create new Pull Request
+1. Create new Pull Request against the development branch
 
 ## License
 
