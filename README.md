@@ -4,7 +4,7 @@
 
 ## To Install this as a User
 
-You will need InSpec v3.9 or later.
+You will need InSpec v3.9 or later. Note that while it will probably run on earlier releases this is what i built it on. 
 
 Simply run:
 
