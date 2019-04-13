@@ -36,7 +36,8 @@ module TrainPlugins
 
 
       def uri
-        "vsphere://#{options[:hostname]}"
+        #Report vsphere URI
+        "vsphere://#{options[:host]}"
       end
 
 
