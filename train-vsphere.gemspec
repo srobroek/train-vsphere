@@ -6,7 +6,7 @@ require 'train-vsphere/version'
 
 Gem::Specification.new do |spec|
   # Importantly, all Train plugins must be prefixed with `train-`
-  spec.name          = 'train-aws'
+  spec.name          = 'train-vsphere'
 
   # It is polite to namespace your plugin under InspecPlugins::YourPluginInCamelCase
   spec.name        = 'train-vsphere'
@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'train', '~> 1.4'
   spec.add_dependency 'vsphere-automation-sdk', '~> 0.1.0'
+  spec.add_dependency 'rbvmomi', '~> 2.1.0'
 end
