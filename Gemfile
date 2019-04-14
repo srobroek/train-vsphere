@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gemspec
 gem 'vsphere-automation-sdk', '~> 0.1.0'
+gem 'rbvmomi', '~> 2.1.0'
 
 group :development do
   gem 'vsphere-automation-sdk', '~> 0.1.0'
