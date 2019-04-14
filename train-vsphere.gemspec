@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.name          = 'train-vsphere'
 
   # It is polite to namespace your plugin under InspecPlugins::YourPluginInCamelCase
-  spec.name        = 'train-vsphere'
   spec.version     = TrainPlugins::Vsphere::VERSION
   spec.authors     = ['Sjors Robroek']
   spec.email       = ['s.robroek@vxsan.com']
@@ -31,5 +30,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'train', '~> 1.4'
   spec.add_dependency 'vsphere-automation-sdk', '~> 0.1.0'
-  spec.add_dependency 'rbvmomi'
+  spec.add_dependency 'rbvmomi', '~> 2.1.0'
 end
