@@ -28,12 +28,14 @@ module TrainPlugins
 
       end
 
-      def vsphere_client(content)
+      def vsphere_client(function)
         begin
-          @vim = RbVmomi::VIM.connect(host: options[:host], user: options[:user], password: options[:password], insecure: !options['insecure']) if !defined? @vim
-
+          if !defined? @vim 
+            @vim = RbVmomi::VIM.connect(host: options[:host], user: options[:user], password: options[:password], insecure: options[:insecure])
+          end
           content = @vim.serviceInstance.content
-          @cache[:api_call][resource.to_s.to_sym] ||= content.public_send(content) if content.respond_to? content
+          @cache[:api_call][function.to_s.to_sym] ||= content.public_send(function) if content.respond_to? function
+        rescue
           fail Train::ClientError
         end
       end
@@ -49,17 +51,18 @@ module TrainPlugins
           c.verify_ssl_host = !options[:insecure]
         end
         begin
-          api_client = VSphereAutomation::ApiClient.new(configuration)
-          api_client.default_headers['Authorization'] = configuration.basic_auth_token
-          session_api = VSphereAutomation::CIS::SessionApi.new(api_client)
+          auth_token = VSphereAutomation::ApiClient.new(configuration)
+          auth_token.default_headers['Authorization'] = configuration.basic_auth_token
+          session_api = VSphereAutomation::CIS::SessionApi.new(auth_token)
           session_id = session_api.create('').value
-          api_client.default_headers['vmware-api-session-id'] = session_id  
+          auth_token.default_headers['vmware-api-session-id'] = session_id  
         
-        return klass.new unless cache_enabled?(:api_call)
-        @cache[:api_call][klass.to_s.to_sym] ||= klass.new
+        return klass.new(auth_token) unless cache_enabled?(:api_call)
+        @cache[:api_call][klass.to_s.to_sym] ||= klass.new(auth_token)
 
         rescue VSphereAutomation::ApiError => e
           fail Train::ClientError
+
         #puts "Exception when calling AccessConsolecliApi->get: #{e}"
         end
       end
@@ -71,7 +74,7 @@ module TrainPlugins
 
 
 
-        @cache[:api_call][resource.to_s.to_sym] ||= resource
+ #       @cache[:api_call][resource.to_s.to_sym] ||= resource
 
       # begin
 
