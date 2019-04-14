@@ -30,14 +30,30 @@ export VC_PASSWORD='notVMware1!'
 inspec exec -t vsphere://
 ```
 
-When connected, you can retrieve your API token in your resources or profiles as such:
+When connected, you can consume vsphere in the following ways: 
 
 ```ruby
-#This retrieves an authentication token
-@authtoken = inspec.backend.authenticate
+#This retrieves the class of name class
+@api_client = inspec.backend.api_client(class)
 
-#This authentication token can now be used to access all other APIs
-VSphereAutomation::Appliance::AccessConsolecliApi.new(@authtoken).get.value
+#For example, the following will return the Console CLI status
+@api_client = inspec.backend.api_client(VSphereAutomation::Appliance::AccessConsolecliApi)
+status = @api_client.get.status
+
+#Or directly
+
+@status = inspec.backend.api_client(VSphereAutomation::Appliance::AccessConsolecliApi).get.status
+
+#You can also use the rbvomi libraries by calling a method. 
+
+@vsphere_client = inspec.backend.vsphere_client(method)
+
+#for example, the following will return the root folder which can then be consumed to find other objects such as VMs and hosts. 
+
+@dc = inspec.backend.vsphere_client(method).childEntity.grep(RbVmomi::VIM::Datacenter).find { |x| x.name == 'mydatacenter' }
+@vm = dc.vmFolder.childEntity.grep(RbVmomi::VIM::VirtualMachine).find { |x| x.name == 'my_vm' }
+
+
 ```
 
 An example of a resource
@@ -47,18 +63,10 @@ class Vcsa < Inspec.resource(1)
 	supports platform: 'vsphere'
 	desc 'Use the vsphere audit resource to get information from the vSphere API'
 
-  def initialize
-    begin
-      @auth_token = inspec.backend.authenticate
-    rescue VSphereAutomation::ApiError => e
-          fail Train::ClientError
-    end
-  end
 
   def ssh
     begin
-     return VSphereAutomation::Appliance::AccessConsolecliApi.new(@auth_token).get.value
-        
+     return inspec.backend.api_client(VSphereAutomation::Appliance::AccessConsolecliApi).get.value     
     rescue VSphereAutomation::ApiError => e
           fail Train::ClientError
     end
