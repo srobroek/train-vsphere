@@ -50,7 +50,7 @@ status = @api_client.get.status
 
 #for example, the following will return the root folder which can then be consumed to find other objects such as VMs and hosts. 
 
-@dc = inspec.backend.vsphere_client(method).childEntity.grep(RbVmomi::VIM::Datacenter).find { |x| x.name == 'mydatacenter' }
+@dc = inspec.backend.vsphere_client('rootFolder').childEntity.grep(RbVmomi::VIM::Datacenter).find { |x| x.name == 'mydatacenter' }
 @vm = dc.vmFolder.childEntity.grep(RbVmomi::VIM::VirtualMachine).find { |x| x.name == 'my_vm' }
 
 
